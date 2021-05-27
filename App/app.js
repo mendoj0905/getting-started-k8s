@@ -13,5 +13,17 @@ app.get('/', function(req, res) {
   });
 });
 
+app.get('/test', (req, res) => {
+  res.json({
+    message: 'success'
+  });
+});
+
+app.get('/new', (req, res) => {
+  res.json({
+    message: 'new endpoint'
+  });
+});
+
 app.listen(8080);
 module.exports.getApp = app;
