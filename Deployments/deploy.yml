@@ -2,22 +2,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-deploy
+  name: hello-nodejs
   labels:
-    app: web
+    app: hello-nodejs
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
-      app: web
+      app: hello-nodejs
   template:
     metadata:
       labels:
-        app: web
+        app: hello-nodejs
     spec: 
-      terminationGracePeriodSeconds: 1
+      nodeSelector:
+        kubernetes.io/arch: arm64
       containers:
-      - name: hello-pod
+      - name: hello-nodejs
         image: jujubeee314/getting-started-k8s:2.0
         imagePullPolicy: Always
         ports:
