@@ -1,0 +1,25 @@
+# Simple deployment used to deploy and manage the app in nigelpoulton/getting-started-k8s:1.0
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-nodejs
+  labels:
+    app: hello-nodejs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-nodejs
+  template:
+    metadata:
+      labels:
+        app: hello-nodejs
+    spec: 
+      nodeSelector:
+        kubernetes.io/arch: arm64
+      containers:
+      - name: hello-nodejs
+        image: jujubeee314/hello-nodejs
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 6000
